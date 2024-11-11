@@ -8,13 +8,13 @@ function App() {
   const textRef = useRef(null);
   const callApi = async (body: Body) => {
     try{
-      const response = await fetch('', {
+      const response = await fetch('http://127.0.0.1:8939/', {
         method: 'POST',
         body: JSON.stringify(body)
       })
-      if(response.ok)
+      if(response.ok && response.body)
       {
-
+        alert(response.body.message ? response.body.message : '')
       }
     }
     catch(error)
@@ -28,7 +28,7 @@ function App() {
     const body: Body = {
       email: textRef.current?.value
     }
-    // await callApi(body)
+    await callApi(body)
   }
   return (
     <div className='flex flex-col justify-center items-center'>
